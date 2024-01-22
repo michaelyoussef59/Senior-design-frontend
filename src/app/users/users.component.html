@@ -1,6 +1,6 @@
 <div class="vl"></div>
 <p>Search Users:</p>
-<textarea name="searchUsers" id="searchUsers" cols="30" rows="1"></textarea>
+<textarea [(ngModel)]="searchUsersTextAreaValue" cols="30" rows="1"></textarea>
 <button (click)="onSearchClick()" class="button">Search</button>
 <hr>
 <textarea name="usersResults" id="usersResults" cols="82" rows="45" [readOnly]="true"></textarea>
