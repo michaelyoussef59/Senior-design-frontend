@@ -11,3 +11,14 @@
     position: relative;
     top: -6px;
 }
+
+.list-container {
+  width: 300 px;
+  border: 1px solid #000;
+  padding: 10px;
+}
+
+.hover-highlight:hover {
+  background-color: darkblue;
+  cursor: pointer;
+}

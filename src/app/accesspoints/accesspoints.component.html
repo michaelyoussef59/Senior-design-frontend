@@ -3,7 +3,13 @@
 <textarea [(ngModel)]="searchFacilitiesUserEnteredTextArea" cols="30" rows="1"></textarea>
 <button (click)="onSearchFacilitiesButtonClick()" class="button">Search</button>
 <hr>
-<textarea [(ngModel)]="facilitiesResult" cols="82" rows="45" [readOnly]="true"></textarea>
+<!-- <textarea [(ngModel)]="facilitiesResult" (click)="handleClick($event)" #textArea cols="82" rows="45" [readOnly]="true"></textarea> -->
+<div class="list-container">
+    <ul>
+        <li *ngFor="let str of facilitiesResultArr" (click)="handleClick(str)" class="hover-highlight">{{str}}</li>
+    </ul>
+</div>
+
 <p></p>
 <button class="button">Add</button>
 <button class="button">Edit</button>
