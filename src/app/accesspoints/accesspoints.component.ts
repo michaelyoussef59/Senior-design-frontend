@@ -9,14 +9,18 @@ export class AccesspointsComponent {
   searchFacilitiesUserEnteredTextArea: string = ''; // to be populated by user
   searchAccessPointsUserEnteredTextArea: string = ''; // to be populated by user
   facilitiesResult: string = ''; // to be populated by init or search
+  accessPointsResult: string = ''; // to be populated by init or search
   
   //all vars below this are test vars
   facilitiesResultArr: string[] = ["facility #1", "facility #2"];
+  accessPointsResultArr: string[] = ["access point #1", "access point #2"];
 
   ngOnInit() {
     // populate facilities from api here
     this.facilitiesResult = '';
     this.populateFacilitiesResultTextBox();
+    this.accessPointsResult = '';
+    this.populateAccessPointsResultTextBox();
   }
 
   handleClick(clickedString: string) {
@@ -35,6 +39,13 @@ export class AccesspointsComponent {
     for (var entryNumber in this.facilitiesResultArr) {
       this.facilitiesResult += this.facilitiesResultArr[entryNumber];
       this.facilitiesResult += "\n";
+    }
+  }
+
+  populateAccessPointsResultTextBox() {
+    for (var entryNumber in this.accessPointsResultArr) {
+      this.accessPointsResult += this.accessPointsResultArr[entryNumber];
+      this.accessPointsResult += "\n";
     }
   }
 

@@ -1,4 +1,3 @@
-<div class="vl"></div>
 <p>Search Facilities:</p>
 <textarea [(ngModel)]="searchFacilitiesUserEnteredTextArea" cols="30" rows="1"></textarea>
 <button (click)="onSearchFacilitiesButtonClick()" class="button">Search</button>
@@ -15,12 +14,16 @@
 <button class="button">Edit</button>
 <button class="button">Delete</button>
 
-<p style="position: relative; left: 630px; top: -790px;">Search Access Points:</p>
-<textarea [(ngModel)]="searchAccessPointsUserEnteredTextArea" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<button (click)="onSearchAccessPointsButtonClick()" class="button" style="position: relative; left: 630px; top: -790px;">Search</button>
+<p>Search Access Points:</p>
+<textarea [(ngModel)]="searchAccessPointsUserEnteredTextArea" cols="30" rows="1"></textarea>
+<button (click)="onSearchAccessPointsButtonClick()" class="button">Search</button>
 <hr>
-<textarea name="accessPointsResults" id="accessPointsResults" cols="82" rows="45" [readOnly]="true" style="position: relative; left: 630px; top: -790px;"></textarea>
+<div class="list-container">
+    <ul>
+        <li *ngFor="let str of accessPointsResultArr" (click)="handleClick(str)" class="hover-highlight">{{str}}</li>
+    </ul>
+</div>
 <p></p>
-<button class="button" style="position: relative; left: 630px; top: -790px;">Add</button>
-<button class="button" style="position: relative; left: 630px; top: -790px;">Edit</button>
-<button class="button" style="position: relative; left: 630px; top: -790px;">Delete</button>
+<button class="button">Add</button>
+<button class="button">Edit</button>
+<button class="button">Delete</button>
