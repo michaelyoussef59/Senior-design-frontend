@@ -31,7 +31,9 @@ export class UsersComponent {
   }
 
   onSaveClick() {
-    console.log("Save clicked: ", this.userIDTextAreaValue, this.emailTextAreaValue, this.usernameTextAreaValue, this.credentialNumberTextAreaValue, this.phoneTextAreaValue, this.nameTextAreaValue, this.roleTextAreaValue, this.nfcIDTextAreaValue, this.passwordTextAreaValue);
+    const currentDate = new Date(); // get current date and time
+    const currentDateString = currentDate.toString().substring(0, currentDate.toString().length - 25); // convert date and time to string without the last 25 characters
+    console.log("Save clicked: ", this.userIDTextAreaValue, this.emailTextAreaValue, this.usernameTextAreaValue, this.credentialNumberTextAreaValue, this.phoneTextAreaValue, this.nameTextAreaValue, this.roleTextAreaValue, this.nfcIDTextAreaValue, this.passwordTextAreaValue, currentDateString);
     this.clearEnteredUserData();
   }
 
