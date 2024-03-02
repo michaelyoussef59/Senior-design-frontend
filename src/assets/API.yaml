@@ -1,10 +1,10 @@
 openapi: 3.0.0
 info:
-  title: Sample API
-  description: This is a sample API definition
+  title: Infinity API
+  description: Explains how to interact with API
   version: 1.0.0
 servers:
-  - url: http://api.example.com/v1
+  - url: "secret"
 paths:
   /users:
     get:
@@ -20,15 +20,12 @@ paths:
                 items:
                   type: object
                   properties:
-                    id:
-                      type: integer
-                      format: int64
-                    username:
+                    userID:
                       type: string
                     email:
                       type: string
     post:
-      summary: Create a new user
+      summary: Create a new user or Update an existing user
       requestBody:
         required: true
         content:
@@ -36,7 +33,7 @@ paths:
             schema:
               type: object
               properties:
-                username:
+                userID:
                   type: string
                 email:
                   type: string
@@ -63,38 +60,10 @@ paths:
               schema:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                    format: int64
-                  username:
+                  userID:
                     type: string
                   email:
                     type: string
-        "404":
-          description: User not found
-    put:
-      summary: Update user by ID
-      parameters:
-        - name: userId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int64
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                email:
-                  type: string
-      responses:
-        "200":
-          description: User updated successfully
         "404":
           description: User not found
     delete:
