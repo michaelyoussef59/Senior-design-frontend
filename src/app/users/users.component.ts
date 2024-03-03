@@ -17,6 +17,10 @@ export class UsersComponent {
   nfcIDTextAreaValue: string = '';
   passwordTextAreaValue: string = '';
 
+  ngOnInit() {
+    
+  }
+
   clearEnteredUserData() {
     //This function clears all of the fields populated by the user
     this.userIDTextAreaValue = ''; // string taken from first name field
