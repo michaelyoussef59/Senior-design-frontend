@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
+import { APISwaggerUIComponent } from './apiswagger-ui/apiswagger-ui.component';
+import { MainComponent } from './main/main.component';
+const routes: Routes = [
+  { path: '', component: MainComponent },
+  { path: 'api-docs', component: APISwaggerUIComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

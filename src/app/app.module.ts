@@ -13,7 +13,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDividerModule } from '@angular/material/divider';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-
+import { APISwaggerUIComponent } from './apiswagger-ui/apiswagger-ui.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { FormsModule } from '@angular/forms';
     UsersComponent,
     SchedulesComponent,
     OperatorsComponent,
-    LoginComponent
+    LoginComponent,
+    APISwaggerUIComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,82 @@
+openapi: 3.0.0
+info:
+  title: Infinity API
+  description: Explains how to interact with API
+  version: 1.0.0
+servers:
+  - url: "secret"
+paths:
+  /users:
+    get:
+      summary: Get a list of users or a single user
+      description: To get a list of users, simply send a GET request to API_URL/users. To get a single user, must pass in primary key name, primary key, sort key name, and sort key as query parameters.
+      parameters:
+        - name: primaryKeyName
+          in: query
+          description: The name of the primary key.
+          required: false
+          schema:
+            type: string
+        - name: primaryKey
+          in: query
+          description: The value of the primary key.
+          required: false
+          schema:
+            type: string
+        - name: sortKeyName
+          in: query
+          description: The name of the sort key.
+          required: false
+          schema:
+            type: string
+        - name: sortKey
+          in: query
+          description: The value of the sort key.
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: A list of users or a sinle user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userID:
+                      type: string
+                    email:
+                      type: string
+        "405":
+          description: The requested method for users was not found on this server.
+
+    post:
+      summary: Create a new user or Update an existing user
+      description: Must pass in userId and email in request body at minimum. Can pass in other key value pairs but they must follow the same formatting as userId and email. This is how dynamodb formats things.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userID:
+                  type: object
+                  properties:
+                    S:
+                      type: string
+                email:
+                  type: object
+                  properties:
+                    S:
+                      type: string
+
+      responses:
+        "201":
+          description: User created successfully
+        "400":
+          description: Missing userId or email in request body
+        "500":
+          description: Internal Server Error
