@@ -80,3 +80,69 @@ paths:
           description: Missing userId or email in request body
         "500":
           description: Internal Server Error
+  /login:
+    post:
+      summary: Check if user is authorized and return a JWT
+      description: Checks whether a user exists in the database. If the user exists, returns a JWT; otherwise, returns 'User unauthorized' message.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RequestBodySchema"
+      responses:
+        "200":
+          description: Successful authentication. Returns a JWT token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT token for authenticated user.
+        "400":
+          description: Invalid request. Missing required fields or invalid JSON.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message indicating the reason for the invalid request.
+        "401":
+          description: Unauthorized. Invalid credentials provided.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message indicating that the user is unauthorized.
+        "500":
+          description: Internal server error. An unexpected error occurred.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Error message indicating the internal server error.
+
+components:
+  schemas:
+    RequestBodySchema:
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email of the user.
+        password:
+          type: string
+          description: The password of the user.
+        userId:
+          type: string
+          description: The unique userId of the user.
