@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './../app/login/login.component';
+import { MainComponent } from './../app/main/main.component';
+import { AuthGuard } from './core/guards/auth.guard';
 import { APISwaggerUIComponent } from './apiswagger-ui/apiswagger-ui.component';
-import { MainComponent } from './main/main.component';
+
 const routes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'api-docs', component: APISwaggerUIComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: MainComponent, canActivate: [AuthGuard] },
+  {
+    path: 'api-docs',
+    component: APISwaggerUIComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
