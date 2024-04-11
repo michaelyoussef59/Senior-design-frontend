@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { APISwaggerUIComponent } from './apiswagger-ui/apiswagger-ui.component';
 import { MainComponent } from './main/main.component';
+import { AuthService } from './core/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -38,7 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
