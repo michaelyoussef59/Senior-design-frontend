@@ -3,7 +3,7 @@
 <textarea [(ngModel)]="searchUsersTextAreaValue" cols="30" rows="1"></textarea>
 <button (click)="onSearchClick()" class="button">Search</button>
 <hr>
-<textarea name="usersResults" id="usersResults" cols="82" rows="45" [readOnly]="true"></textarea>
+<textarea [(ngModel)]="usersResults" cols="82" rows="45" [readOnly]="true"></textarea>
 <p></p>
 <button class="button">Add</button>
 <button class="button">Edit</button>

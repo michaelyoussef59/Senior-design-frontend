@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { APISwaggerUIComponent } from './apiswagger-ui/apiswagger-ui.component';
 import { MainComponent } from './main/main.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { MainComponent } from './main/main.component';
     OperatorsComponent,
     LoginComponent,
     APISwaggerUIComponent,
-    MainComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,8 @@ import { MainComponent } from './main/main.component';
     BrowserAnimationsModule,
     MatTabsModule,
     MatDividerModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

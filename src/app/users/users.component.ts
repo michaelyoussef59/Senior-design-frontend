@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { ApiServiceService } from '../api-service.service';
+import { AppComponent } from '../app.component';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -17,8 +21,52 @@ export class UsersComponent {
   nfcIDTextAreaValue: string = '';
   passwordTextAreaValue: string = '';
 
+  usersResultsArr: string[] = ["user #1", "user #2"]; // array used to display users, default is user #1 and user #2 solely for testing
+  usersResults: string = ''; // to be populated by init or search and used to add to results array
+  receivedData: any;
+  constructor(private apiService: ApiServiceService) { }
+
   ngOnInit() {
-    
+    this.usersResults = '';
+    this.populateUsersResultTextBox();
+    // let jsonData = this.apiService.getUsers();
+    // this.parseUserIDs(jsonData);
+    this.apiService.fetchData().subscribe((jsonData: any) => {
+      if (jsonData && jsonData.body) {
+        this.receivedData = jsonData.body;
+      }
+      this.parseUserIDs(jsonData);
+    })
+  }
+
+  parseUserIDs(jsonData: any) {
+    // Array to store userIDs
+    const userIdArray: any[] = [];
+
+    // Iterate over each item in the "body" array
+    jsonData.body.forEach((item: { hasOwnProperty: (arg0: string) => any; userId: any; }) => {
+      // Check if the item has a "userId" property
+      if (item.hasOwnProperty('userId')) {
+        // Push the userId to the userIdArray
+        userIdArray.push(item.userId);
+      }
+    });
+
+    // Display the array of userIDs
+    console.log(userIdArray);
+    this.usersResults = '';
+    for (var entryNumber in userIdArray) {
+      this.usersResults += userIdArray[entryNumber];
+      this.usersResults += "\n";
+    }
+
+  }
+
+  populateUsersResultTextBox() {
+    for (var entryNumber in this.usersResultsArr) {
+      this.usersResults += this.usersResultsArr[entryNumber];
+      this.usersResults += "\n";
+    }
   }
 
   clearEnteredUserData() {
