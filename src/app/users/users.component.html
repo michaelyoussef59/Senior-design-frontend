@@ -1,39 +1,107 @@
-<div class="vl"></div>
-<p>Search Users:</p>
-<textarea [(ngModel)]="searchUsersTextAreaValue" cols="30" rows="1"></textarea>
-<button (click)="onSearchClick()" class="button">Search</button>
-<hr>
-<textarea [(ngModel)]="usersResults" cols="82" rows="45" [readOnly]="true"></textarea>
-<p></p>
-<button class="button">Add</button>
-<button class="button">Edit</button>
-<button class="button">Delete</button>
-
-<p style="position: relative; left: 630px; top: -790px;">User ID:</p>
-<textarea [(ngModel)]="userIDTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Email:</p>
-<textarea [(ngModel)]="emailTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Username:</p>
-<textarea [(ngModel)]="usernameTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Credential number:</p>
-<textarea [(ngModel)]="credentialNumberTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Phone:</p>
-<textarea [(ngModel)]="phoneTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Name:</p>
-<textarea [(ngModel)]="nameTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Role:</p>
-<textarea [(ngModel)]="roleTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<!-- change role to dropdown -->
-<p style="position: relative; left: 630px; top: -790px;">NFC ID:</p>
-<textarea [(ngModel)]="nfcIDTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Password:</p>
-<textarea [(ngModel)]="passwordTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<!-- created at, updated at -->
-
-
-
-
-<hr>
-<p></p>
-<button (click)="onSaveClick()" class="button" style="position: relative; left: 630px; top: -790px;">Save</button>
-<button (click)="onCancelClick()" class="button" style="position: relative; left: 630px; top: -790px;">Cancel</button>
+<div class="container">
+  <div class="search-section">
+    <h2>Search Users</h2>
+    <textarea
+      [(ngModel)]="searchUsersTextAreaValue"
+      cols="30"
+      rows="1"
+    ></textarea>
+    <button (click)="onSearchClick()" class="button">Search</button>
+    <hr />
+    <textarea
+      [(ngModel)]="usersResults"
+      cols="82"
+      rows="45"
+      [readOnly]="true"
+    ></textarea>
+    <p></p>
+  </div>
+  <div class="user-details">
+    <h2>User Details</h2>
+    <div class="input-group">
+      <label for="userID">User ID:</label>
+      <textarea
+        [(ngModel)]="userIDTextAreaValue"
+        id="userID"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <textarea
+        [(ngModel)]="emailTextAreaValue"
+        id="email"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <textarea
+        [(ngModel)]="usernameTextAreaValue"
+        id="username"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="credentialNumber">Credential Number:</label>
+      <textarea
+        [(ngModel)]="credentialNumberTextAreaValue"
+        id="credentialNumber"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="phone">Phone:</label>
+      <textarea
+        [(ngModel)]="phoneTextAreaValue"
+        id="phone"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="name">Name:</label>
+      <textarea
+        [(ngModel)]="nameTextAreaValue"
+        id="name"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="role">Role:</label>
+      <!-- Change to dropdown -->
+      <select [(ngModel)]="roleTextAreaValue" id="role">
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="nfcID">NFC ID:</label>
+      <textarea
+        [(ngModel)]="nfcIDTextAreaValue"
+        id="nfcID"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <textarea
+        [(ngModel)]="passwordTextAreaValue"
+        id="password"
+        cols="30"
+        rows="1"
+      ></textarea>
+    </div>
+    <!-- created at, updated at -->
+    <hr />
+    <p></p>
+    <button (click)="onSaveClick()" class="button">Save</button>
+    <button (click)="onCancelClick()" class="button">Cancel</button>
+  </div>
+</div>
