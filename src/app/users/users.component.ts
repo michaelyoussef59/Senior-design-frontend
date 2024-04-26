@@ -72,7 +72,7 @@ export class UsersComponent {
         const params = {
           userId: { S: this.userIDTextAreaValue },
           email: { S: this.emailTextAreaValue },
-          accessPoint: { S: this.accessPointTextAreaValue },
+          accessPointName: { S: this.accessPointTextAreaValue },
           username: { S: this.usernameTextAreaValue},
           credentialNumber: { S: this.credentialNumberTextAreaValue },
           phone: { S: this.phoneTextAreaValue},
