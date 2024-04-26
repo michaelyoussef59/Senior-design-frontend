@@ -4,19 +4,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiServiceService {
-
   private jsonDataSubject = new BehaviorSubject<any>(null);
   jsonData = this.jsonDataSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   apiUrl = environment.apiKey;
-  usersApiUrl = this.apiUrl + 'prod/users';
+  usersApiUrl = this.apiUrl + '/users';
 
   getUsers() {
-    this.http.get(this.usersApiUrl, { responseType: 'text'}).subscribe(
+    this.http.get(this.usersApiUrl, { responseType: 'text' }).subscribe(
       (response: string) => {
         console.log(response);
       },

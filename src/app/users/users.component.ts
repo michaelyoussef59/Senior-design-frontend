@@ -1,82 +1,62 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiServiceService } from '../api-service.service';
-import { AppComponent } from '../app.component';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.css'],
 })
 export class UsersComponent {
-  searchUsersTextAreaValue: string = ''; // string taken from user search field
-  userIDTextAreaValue: string = ''; // string taken from first name field
-  emailTextAreaValue: string = ''; // string taken from last name field
-  usernameTextAreaValue: string = ''; // string taken from credential number field
-  credentialNumberTextAreaValue: string = ''; // string taken from access level field
-  phoneTextAreaValue: string = ''; // string taken from activation date field
-  nameTextAreaValue: string = ''; // string taken from expiration date field
-  roleTextAreaValue: string = '';
-  nfcIDTextAreaValue: string = '';
-  passwordTextAreaValue: string = '';
-
-  usersResultsArr: string[] = ["user #1", "user #2"]; // array used to display users, default is user #1 and user #2 solely for testing
-  usersResults: string = ''; // to be populated by init or search and used to add to results array
+  searchUsersTextAreaValue = '';
+  userIDTextAreaValue = '';
+  emailTextAreaValue = '';
+  usernameTextAreaValue = '';
+  credentialNumberTextAreaValue = '';
+  phoneTextAreaValue = '';
+  nameTextAreaValue = '';
+  roleTextAreaValue = '';
+  nfcIDTextAreaValue = '';
+  passwordTextAreaValue = '';
+  usersResultsArr = ['user #1', 'user #2'];
+  usersResults = '';
   receivedData: any;
-  constructor(private apiService: ApiServiceService) { }
+
+  constructor(private apiService: ApiServiceService) {}
 
   ngOnInit() {
-    this.usersResults = '';
     this.populateUsersResultTextBox();
-    // let jsonData = this.apiService.getUsers();
-    // this.parseUserIDs(jsonData);
+    this.fetchDataAndParseUserIDs();
+  }
+
+  fetchDataAndParseUserIDs() {
     this.apiService.fetchData().subscribe((jsonData: any) => {
       if (jsonData && jsonData.body) {
         this.receivedData = jsonData.body;
+        this.parseUserIDs(jsonData);
       }
-      this.parseUserIDs(jsonData);
-    })
+    });
   }
 
   parseUserIDs(jsonData: any) {
-    // Array to store userIDs
-    const userIdArray: any[] = [];
+    const userIdArray = jsonData.body
+      .filter((item: any) => item.hasOwnProperty('userId'))
+      .map((item: any) => item.userId);
 
-    // Iterate over each item in the "body" array
-    jsonData.body.forEach((item: { hasOwnProperty: (arg0: string) => any; userId: any; }) => {
-      // Check if the item has a "userId" property
-      if (item.hasOwnProperty('userId')) {
-        // Push the userId to the userIdArray
-        userIdArray.push(item.userId);
-      }
-    });
-
-    // Display the array of userIDs
     console.log(userIdArray);
-    this.usersResults = '';
-    for (var entryNumber in userIdArray) {
-      this.usersResults += userIdArray[entryNumber];
-      this.usersResults += "\n";
-    }
-
+    this.usersResults = userIdArray.join('\n');
   }
 
   populateUsersResultTextBox() {
-    for (var entryNumber in this.usersResultsArr) {
-      this.usersResults += this.usersResultsArr[entryNumber];
-      this.usersResults += "\n";
-    }
+    this.usersResults = this.usersResultsArr.join('\n');
   }
 
   clearEnteredUserData() {
-    //This function clears all of the fields populated by the user
-    this.userIDTextAreaValue = ''; // string taken from first name field
-    this.emailTextAreaValue = ''; // string taken from last name field
-    this.usernameTextAreaValue = ''; // string taken from credential number field
-    this.credentialNumberTextAreaValue  = ''; // string taken from access level field
-    this.phoneTextAreaValue = ''; // string taken from activation date field
-    this.nameTextAreaValue = ''; // string taken from expiration date field
+    this.userIDTextAreaValue = '';
+    this.emailTextAreaValue = '';
+    this.usernameTextAreaValue = '';
+    this.credentialNumberTextAreaValue = '';
+    this.phoneTextAreaValue = '';
+    this.nameTextAreaValue = '';
     this.roleTextAreaValue = '';
     this.nfcIDTextAreaValue = '';
     this.passwordTextAreaValue = '';
@@ -106,11 +86,42 @@ export class UsersComponent {
   }
 
   onCancelClick() {
-    console.log("Cancel clicked");
+    console.log('Cancel clicked');
     this.clearEnteredUserData();
   }
 
   onSearchClick() {
-    console.log("Search clicked", this.searchUsersTextAreaValue);
+    if (!this.receivedData) {
+      console.error('No data received.');
+      return;
+    }
+
+    if (!this.searchUsersTextAreaValue.trim()) {
+      // If search input is empty, reset usersResults to display all users
+      this.populateUsersResultTextBox();
+      return;
+    }
+
+    // Filter receivedData based on search input
+    const filteredUsers = this.receivedData.filter((user: any) => {
+      // Check if the user object and its properties exist before accessing them
+      return (
+        user &&
+        user.username &&
+        user.email &&
+        (user.username
+          .toLowerCase()
+          .includes(this.searchUsersTextAreaValue.toLowerCase()) ||
+          user.email
+            .toLowerCase()
+            .includes(this.searchUsersTextAreaValue.toLowerCase()))
+      );
+    });
+
+    // Extract user IDs from filtered users
+    const userIds = filteredUsers.map((user: any) => user.userId);
+
+    // Update usersResults with filtered user IDs
+    this.usersResults = userIds.join('\n');
   }
 }
