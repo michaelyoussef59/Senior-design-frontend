@@ -46,4 +46,19 @@ export class ApiServiceService {
     return this.http.post(this.usersApiUrl, body);
     // return this.http.post(url, body, { headers: headers });
   }
+
+
+  addUserParams(params: any): Observable<any> {
+    // const url = 'https://your-api-url.com/addUser';
+    
+    // Headers if needed
+    // const headers = new HttpHeaders({
+    //   'Content-Type': 'application/json'
+    // });
+
+    // Data to send
+
+    return this.http.post(this.usersApiUrl, params);
+    // return this.http.post(url, body, { headers: headers });
+  }
 }

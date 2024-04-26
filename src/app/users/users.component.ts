@@ -14,11 +14,12 @@ export class UsersComponent {
   credentialNumberTextAreaValue = '';
   phoneTextAreaValue = '';
   nameTextAreaValue = '';
-  roleTextAreaValue = '';
+  accessLevelTextAreaValue = '';
   nfcIDTextAreaValue = '';
   passwordTextAreaValue = '';
-  usersResultsArr = ['user #1', 'user #2'];
+  usersResultsArr = ['Loading...'];
   usersResults = '';
+  accessPointTextAreaValue = '';
   receivedData: any;
 
   constructor(private apiService: ApiServiceService) {}
@@ -39,8 +40,8 @@ export class UsersComponent {
 
   parseUserIDs(jsonData: any) {
     const userIdArray = jsonData.body
-      .filter((item: any) => item.hasOwnProperty('userId'))
-      .map((item: any) => item.userId);
+      .filter((item: any) => item.hasOwnProperty('email'))
+      .map((item: any) => item.email);
 
     console.log(userIdArray);
     this.usersResults = userIdArray.join('\n');
@@ -57,20 +58,35 @@ export class UsersComponent {
     this.credentialNumberTextAreaValue = '';
     this.phoneTextAreaValue = '';
     this.nameTextAreaValue = '';
-    this.roleTextAreaValue = '';
+    this.accessLevelTextAreaValue = '';
     this.nfcIDTextAreaValue = '';
     this.passwordTextAreaValue = '';
+    this.accessPointTextAreaValue = '';
   }
 
   onSaveClick() {
     const currentDate = new Date(); // get current date and time
     const currentDateString = currentDate.toString().substring(0, currentDate.toString().length - 25); // convert date and time to string without the last 25 characters
-    console.log("Save clicked: ", this.userIDTextAreaValue, this.emailTextAreaValue, this.usernameTextAreaValue, this.credentialNumberTextAreaValue, this.phoneTextAreaValue, this.nameTextAreaValue, this.roleTextAreaValue, this.nfcIDTextAreaValue, this.passwordTextAreaValue, currentDateString);
-    if ((this.userIDTextAreaValue != "") && (this.emailTextAreaValue != "")) {
-        this.apiService.addUser(this.userIDTextAreaValue, this.emailTextAreaValue)
+    console.log("Save clicked: ", this.userIDTextAreaValue, this.emailTextAreaValue, this.usernameTextAreaValue, this.credentialNumberTextAreaValue, this.phoneTextAreaValue, this.nameTextAreaValue, this.accessLevelTextAreaValue, this.nfcIDTextAreaValue, this.passwordTextAreaValue, currentDateString);
+    if ((this.userIDTextAreaValue != "") && (this.emailTextAreaValue != "") && (this.accessPointTextAreaValue != "")) {
+        const params = {
+          userId: { S: this.userIDTextAreaValue },
+          email: { S: this.emailTextAreaValue },
+          accessPoint: { S: this.accessPointTextAreaValue },
+          username: { S: this.usernameTextAreaValue},
+          credentialNumber: { S: this.credentialNumberTextAreaValue },
+          phone: { S: this.phoneTextAreaValue},
+          name: { S: this.nameTextAreaValue},
+          accessLevel: { S: this.accessLevelTextAreaValue}
+          // Add more attributes as needed
+        };
+        const paramsJSON = JSON.stringify(params);
+        this.apiService.addUserParams(paramsJSON)
           .subscribe(
             response => {
               console.log('User added successfully', response);
+              this.populateUsersResultTextBox();
+              this.fetchDataAndParseUserIDs();
               // Do something with the response
             },
             error => {
@@ -83,6 +99,33 @@ export class UsersComponent {
       console.log("missing value");
     }
     this.clearEnteredUserData();
+  }
+
+  onSaveTwoClick() {
+    const params = {
+        userId: { S: 'test-user-id3' },
+        email: { S: 'test-user-email3' } // Change 'Key' and 'Value' to your attribute names and values
+        // Add more attributes as needed
+    };
+
+    const paramsJSON = JSON.stringify(params);
+
+    if ((this.userIDTextAreaValue != "") && (this.emailTextAreaValue != "")) {
+      this.apiService.addUserParams(paramsJSON)
+        .subscribe(
+          response => {
+            console.log('User added successfully', response);
+            // Do something with the response
+          },
+          error => {
+            console.error('Error adding user:', error);
+            // Handle error
+          }
+        );
+  }
+  else {
+    console.log("missing value");
+  }
   }
 
   onCancelClick() {

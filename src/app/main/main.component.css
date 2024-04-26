@@ -1,0 +1,26 @@
+/* under-construction.component.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 36px;
+    color: #333;
+  }
+  
+  p {
+    font-size: 20px;
+    color: #666;
+  }
+  
