@@ -1,39 +1,66 @@
-<div class="vl"></div>
-<p>Search Users:</p>
-<textarea [(ngModel)]="searchUsersTextAreaValue" cols="30" rows="1"></textarea>
-<button (click)="onSearchClick()" class="button">Search</button>
-<hr>
-<textarea [(ngModel)]="usersResults" cols="82" rows="45" [readOnly]="true"></textarea>
-<p></p>
-<button class="button">Add</button>
-<button class="button">Edit</button>
-<button class="button">Delete</button>
-
-<p style="position: relative; left: 630px; top: -790px;">User ID:</p>
-<textarea [(ngModel)]="userIDTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Email:</p>
-<textarea [(ngModel)]="emailTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Username:</p>
-<textarea [(ngModel)]="usernameTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Credential number:</p>
-<textarea [(ngModel)]="credentialNumberTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Phone:</p>
-<textarea [(ngModel)]="phoneTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Name:</p>
-<textarea [(ngModel)]="nameTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Role:</p>
-<textarea [(ngModel)]="roleTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<!-- change role to dropdown -->
-<p style="position: relative; left: 630px; top: -790px;">NFC ID:</p>
-<textarea [(ngModel)]="nfcIDTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<p style="position: relative; left: 630px; top: -790px;">Password:</p>
-<textarea [(ngModel)]="passwordTextAreaValue" cols="30" rows="1" style="position: relative; left: 630px; top: -790px;"></textarea>
-<!-- created at, updated at -->
-
-
-
-
-<hr>
-<p></p>
-<button (click)="onSaveClick()" class="button" style="position: relative; left: 630px; top: -790px;">Save</button>
-<button (click)="onCancelClick()" class="button" style="position: relative; left: 630px; top: -790px;">Cancel</button>
+<mat-card>
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Search Users</mat-label>
+        <textarea matInput [(ngModel)]="searchUsersTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="onSearchClick()">Search</button>
+      <hr>
+      <textarea matInput [(ngModel)]="usersResults" cols="82" rows="45" [readonly]="true"></textarea>
+      <div class="buttons-row">
+        <button mat-raised-button>Add</button>
+        <button mat-raised-button>Edit</button>
+        <button mat-raised-button>Delete</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-card class="user-details">
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>User ID</mat-label>
+        <textarea matInput [(ngModel)]="userIDTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <textarea matInput [(ngModel)]="emailTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <textarea matInput [(ngModel)]="usernameTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Credential Number</mat-label>
+        <textarea matInput [(ngModel)]="credentialNumberTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <textarea matInput [(ngModel)]="phoneTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <textarea matInput [(ngModel)]="nameTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <mat-select [(ngModel)]="roleTextAreaValue">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="User">User</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>NFC ID</mat-label>
+        <textarea matInput [(ngModel)]="nfcIDTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <textarea matInput [(ngModel)]="passwordTextAreaValue" cols="30" rows="1"></textarea>
+      </mat-form-field>
+      <!-- created at, updated at -->
+      <div class="buttons-row">
+        <button mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
+        <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
