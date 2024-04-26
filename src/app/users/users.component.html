@@ -19,7 +19,7 @@
   <div class="user-details">
     <h2>User Details</h2>
     <div class="input-group">
-      <label for="userID">User ID:</label>
+      <label for="userID">User ID (required):</label>
       <textarea
         [(ngModel)]="userIDTextAreaValue"
         id="userID"
@@ -28,7 +28,7 @@
       ></textarea>
     </div>
     <div class="input-group">
-      <label for="email">Email:</label>
+      <label for="email">Email (required):</label>
       <textarea
         [(ngModel)]="emailTextAreaValue"
         id="email"
@@ -36,6 +36,15 @@
         rows="1"
       ></textarea>
     </div>
+    <div class="input-group">
+        <label for="role">Access Point (required):</label>
+        <!-- Change to dropdown -->
+        <select [(ngModel)]="accessPointTextAreaValue" id="role">
+          <option value="a">A</option>
+          <option value="b">B</option>
+          <option value="c">C</option>
+        </select>
+      </div>
     <div class="input-group">
       <label for="username">Username:</label>
       <textarea
@@ -73,30 +82,13 @@
       ></textarea>
     </div>
     <div class="input-group">
-      <label for="role">Role:</label>
+      <label for="role">Access Level:</label>
       <!-- Change to dropdown -->
-      <select [(ngModel)]="roleTextAreaValue" id="role">
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
+      <select [(ngModel)]="accessLevelTextAreaValue" id="role">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
       </select>
-    </div>
-    <div class="input-group">
-      <label for="nfcID">NFC ID:</label>
-      <textarea
-        [(ngModel)]="nfcIDTextAreaValue"
-        id="nfcID"
-        cols="30"
-        rows="1"
-      ></textarea>
-    </div>
-    <div class="input-group">
-      <label for="password">Password:</label>
-      <textarea
-        [(ngModel)]="passwordTextAreaValue"
-        id="password"
-        cols="30"
-        rows="1"
-      ></textarea>
     </div>
     <!-- created at, updated at -->
     <hr />

@@ -18,6 +18,12 @@ import { MainComponent } from './main/main.component';
 import { AuthService } from './core/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +43,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     MatDividerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
